@@ -8,7 +8,9 @@ export default (file1, file2, formatType = 'json') => {
   const data2 = readFile(file2);
 
   const parse1 = getParser(getExt(file1));
-  const parse2 = getParser(getExt(file1));
+  const parse2 = getParser(getExt(file2));
+
+  console.log(parse1);
 
   const firstParsed = parse1(data1);
   const secondParsed = parse2(data2);

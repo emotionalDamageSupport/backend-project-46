@@ -5,8 +5,12 @@ import genDiff from '../src/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const answerPlainJson = readFileSync(path.resolve(__dirname, '__fixtures__/plainJson.txt'), 'utf-8');
+const answerPlain = readFileSync(path.resolve(__dirname, '__fixtures__/plainResult.txt'), 'utf-8');
 
-test('works', () => {
-  expect(genDiff('file1.json', 'file2.json')).toEqual(answerPlainJson);
+test('json', () => {
+  expect(genDiff('file1.json', 'file2.json')).toEqual(answerPlain);
+});
+
+test('yaml', () => {
+  expect(genDiff('file1.yaml', 'file2.yaml')).toEqual(answerPlain);
 });
