@@ -13,7 +13,6 @@ program
   .option('-f --format', 'output format')
   .arguments('<filepath1> <filepath2>')
   .action((file1, file2) => {
-    console.log(file1);
     genDiff(file1, file2);
   });
 

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default (data1, data2, formatter) => {
+export default (data1, data2) => {
   const keys = _.union(Object.keys(data1), Object.keys(data2));
 
   const diffs = keys.map((key) => {
@@ -27,5 +27,5 @@ export default (data1, data2, formatter) => {
     return 0;
   });
 
-  return formatter(sortedDiffs);
+  return sortedDiffs;
 };
