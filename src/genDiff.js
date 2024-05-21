@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default (data1, data2) => {
+export const genDiff = (data1, data2) => {
   const keys = _.union(Object.keys(data1), Object.keys(data2));
 
   const diffs = keys.map((key) => {
@@ -10,6 +10,10 @@ export default (data1, data2) => {
 
     if (!_.has(data2, key)) {
       return { key, type: 'removed', value: data1[key] };
+    }
+
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return { key, type: 'nested', children: genDiff(data1[key], data2[key]) };
     }
 
     if (typeof data1[key] !== typeof data2[key] || data1[key] !== data2[key]) {
@@ -29,3 +33,5 @@ export default (data1, data2) => {
 
   return sortedDiffs;
 };
+
+export default genDiff;

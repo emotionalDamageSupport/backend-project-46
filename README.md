@@ -10,3 +10,6 @@
 
 ## YAML Diff
 [![asciicast](https://asciinema.org/a/Q7AG78f5Q1nZouQK1Rke7Qsiz.svg)](https://asciinema.org/a/Q7AG78f5Q1nZouQK1Rke7Qsiz)
+
+## Nested Diff
+[![asciicast](https://asciinema.org/a/IgfZbCKall6ldzJwAzCwZgqFB.svg)](https://asciinema.org/a/IgfZbCKall6ldzJwAzCwZgqFB)
