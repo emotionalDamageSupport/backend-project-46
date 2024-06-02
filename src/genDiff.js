@@ -1,9 +1,9 @@
 import _ from 'lodash';
 
-export const genDiff = (data1, data2) => {
+const genDiff = (data1, data2) => {
   const keys = _.union(Object.keys(data1), Object.keys(data2));
 
-  const diffs = keys.map((key) => {
+  return keys.map((key) => {
     if (!_.has(data1, key)) {
       return { key, type: 'added', value: data2[key] };
     }
@@ -23,15 +23,11 @@ export const genDiff = (data1, data2) => {
     }
 
     return { key, type: 'unchanged', value: data1[key] };
-  });
-
-  const sortedDiffs = diffs.sort((a, b) => {
+  }).sort((a, b) => {
     if (a.key < b.key) return -1;
     if (a.key > b.key) return 1;
     return 0;
   });
-
-  return sortedDiffs;
 };
 
 export default genDiff;
