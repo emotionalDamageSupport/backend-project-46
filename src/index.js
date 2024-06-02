@@ -1,7 +1,7 @@
 import { readFile, getExt } from './utils.js';
 import getParser from './parsers.js';
 import genDiff from './genDiff.js';
-import getFormatter from './formatters/formatters.js';
+import getFormatter from './formatters/index.js';
 
 export default (file1, file2, format = 'stylish') => {
   const data1 = readFile(file1);
@@ -15,11 +15,7 @@ export default (file1, file2, format = 'stylish') => {
 
   const diff = genDiff(firstParsed, secondParsed);
 
-  console.log({ format });
-
   const formatData = getFormatter(format);
-
-  console.log(formatData);
 
   const formattedData = formatData(diff);
   console.log(formattedData);

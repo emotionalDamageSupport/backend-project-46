@@ -13,3 +13,6 @@
 
 ## Nested Diff
 [![asciicast](https://asciinema.org/a/IgfZbCKall6ldzJwAzCwZgqFB.svg)](https://asciinema.org/a/IgfZbCKall6ldzJwAzCwZgqFB)
+
+## Plain format
+[![asciicast](https://asciinema.org/a/lnMC9i57iuYz2FJcVKGb7EOhF.svg)](https://asciinema.org/a/lnMC9i57iuYz2FJcVKGb7EOhF)
