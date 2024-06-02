@@ -23,7 +23,7 @@ const genDiff = (data1, data2) => {
     }
 
     return { key, type: 'unchanged', value: data1[key] };
-  }).sort((a, b) => {
+  }).toSorted((a, b) => {
     if (a.key < b.key) return -1;
     if (a.key > b.key) return 1;
     return 0;
