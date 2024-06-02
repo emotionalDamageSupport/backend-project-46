@@ -9,6 +9,8 @@ const answer = readFileSync(path.resolve(__dirname, '__fixtures__/result.txt'), 
 
 const plain = readFileSync(path.resolve(__dirname, '__fixtures__/plain.txt'), 'utf-8');
 
+const jsonAnswer = readFileSync(path.resolve(__dirname, '__fixtures__/json.txt'), 'utf-8');
+
 test('json', () => {
   expect(genDiff('file1.json', 'file2.json')).toEqual(answer);
 });
@@ -19,4 +21,8 @@ test('yaml', () => {
 
 test('plain', () => {
   expect(genDiff('file1.json', 'file2.json', 'plain')).toEqual(plain);
+});
+
+test('json format', () => {
+  expect(genDiff('file1.json', 'file2.json', 'json')).toEqual(jsonAnswer);
 });
