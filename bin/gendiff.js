@@ -13,7 +13,8 @@ program
   .option('-f --format [type]', 'output format', 'stylish')
   .arguments('<filepath1> <filepath2>')
   .action((file1, file2) => {
-    genDiff(file1, file2, program.opts().format);
+    const diff = genDiff(file1, file2, program.opts().format);
+    console.log(diff);
   });
 
 program.parse(process.argv);

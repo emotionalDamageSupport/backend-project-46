@@ -18,6 +18,5 @@ export default (file1, file2, format = 'stylish') => {
   const formatData = getFormatter(format);
 
   const formattedData = formatData(diff);
-  console.log(formattedData);
   return formattedData;
 };
