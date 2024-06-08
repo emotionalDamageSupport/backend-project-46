@@ -21,8 +21,8 @@ const plain = (diffs, ancestor = '') => {
   const formattedDiff = diffs
     .filter((diff) => diff.type !== 'unchanged')
     .map((diff) => {
-      if (diff.type === 'removed') {
-        return `Property '${getKeyName(diff.key, ancestor)}' was removed`;
+      if (diff.type === 'added') {
+        return `Property '${getKeyName(diff.key, ancestor)}' was added with value: ${formatValue(diff.value)}`;
       }
       if (diff.type === 'changed') {
         return `Property '${getKeyName(diff.key, ancestor)}' was updated. From ${formatValue(diff.oldValue)} to ${formatValue(diff.newValue)}`;
@@ -30,7 +30,7 @@ const plain = (diffs, ancestor = '') => {
       if (diff.type === 'nested') {
         return plain(diff.children, getKeyName(diff.key, ancestor));
       }
-      return `Property '${getKeyName(diff.key, ancestor)}' was added with value: ${formatValue(diff.value)}`;
+      return `Property '${getKeyName(diff.key, ancestor)}' was removed`;
     });
 
   return `${formattedDiff.join('\n')}`;

@@ -1,15 +1,14 @@
 import _ from 'lodash';
 
 const genDiff = (data1, data2) => {
-  const keys = _.union(Object.keys(data1), Object.keys(data2));
+  const keys = _.union(Object.keys(data2), Object.keys(data1)).toSorted();
 
   return keys.map((key) => {
-    if (!_.has(data1, key)) {
-      return { key, type: 'added', value: data2[key] };
-    }
-
     if (!_.has(data2, key)) {
       return { key, type: 'removed', value: data1[key] };
+    }
+    if (!_.has(data1, key)) {
+      return { key, type: 'added', value: data2[key] };
     }
 
     if (_.isObject(data1[key]) && _.isObject(data2[key])) {
@@ -23,10 +22,6 @@ const genDiff = (data1, data2) => {
     }
 
     return { key, type: 'unchanged', value: data1[key] };
-  }).toSorted((a, b) => {
-    if (a.key < b.key) return -1;
-    if (a.key > b.key) return 1;
-    return 0;
   });
 };
 
