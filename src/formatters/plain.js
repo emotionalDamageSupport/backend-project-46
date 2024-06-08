@@ -21,16 +21,16 @@ const plain = (diffs, ancestor = '') => {
   const formattedDiff = diffs
     .filter((diff) => diff.type !== 'unchanged')
     .map((diff) => {
-      if (diff.type === 'added') {
-        return `Property '${getKeyName(diff.key, ancestor)}' was added with value: ${formatValue(diff.value)}`;
+      switch (diff.type) {
+        case 'added':
+          return `Property '${getKeyName(diff.key, ancestor)}' was added with value: ${formatValue(diff.value)}`;
+        case 'changed':
+          return `Property '${getKeyName(diff.key, ancestor)}' was updated. From ${formatValue(diff.oldValue)} to ${formatValue(diff.newValue)}`;
+        case 'nested':
+          return plain(diff.children, getKeyName(diff.key, ancestor));
+        default:
+          return `Property '${getKeyName(diff.key, ancestor)}' was removed`;
       }
-      if (diff.type === 'changed') {
-        return `Property '${getKeyName(diff.key, ancestor)}' was updated. From ${formatValue(diff.oldValue)} to ${formatValue(diff.newValue)}`;
-      }
-      if (diff.type === 'nested') {
-        return plain(diff.children, getKeyName(diff.key, ancestor));
-      }
-      return `Property '${getKeyName(diff.key, ancestor)}' was removed`;
     });
 
   return `${formattedDiff.join('\n')}`;
